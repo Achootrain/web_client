@@ -57,10 +57,10 @@ const handleChange = async(info) => {
     let formField = new FormData();
     formField.append('file', file);  // Append the file with the key 'file'
     // Log FormData entries for debugging
-    const response = await axios.post('https://api.imgur.com/3/image', formData, {
+    const response = await axios.post('https://api.imgur.com/3/image', formField, {
       headers: {
         'Authorization': `Client-ID ${IMGUR_CLIENT_ID}`,
-        ...formData.getHeaders() // Include FormData headers
+        ...formField.getHeaders() // Include FormData headers
       }
     });
 
