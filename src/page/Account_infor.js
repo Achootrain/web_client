@@ -40,7 +40,7 @@ function Account_infor() {
   const [profile, setProfile] = useState([]);
 
 useEffect(() => {
-  axios.post(`${process.env.REACT_APP_SERVER}/data/getData`, {},{
+  axios.post("https://magnificent-playfulness-production.up.railway.app/data/getData", {},{
     headers: {token: sessionStorage.getItem("token")}
   }).then((response) => {
     if(!response.data.error){
@@ -62,25 +62,25 @@ useEffect(() => {
 }, []);
   
   const deleteWork =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/works/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/works/delete", {id:record_id});
       setWork(works.filter((item) => item.id !== record_id));}
   const deleteEducation =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/educations/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/educations/delete", {id:record_id});
       setEducation(education.filter((item) => item.id !== record_id));}
   const deleteProject =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/projects/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/projects/delete", {id:record_id});
       setProjects(projects.filter((item) => item.id !== record_id));}
   const deletePublication =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/publications/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/publications/delete", {id:record_id});
       setPublications(publications.filter((item) => item.id !== record_id));}
   const deleteVolunteer =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/volunteers/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/volunteers/delete", {id:record_id});
       setVolunteer(volunteers.filter((item) => item.id !== record_id));}
   const deleteAward =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/awards/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/awards/delete", {id:record_id});
       setAwards(awards.filter((item) => item.id !== record_id));}
   const deleteCertificate =async (record_id) => {
-      await axios.post(`${process.env.REACT_APP_SERVER}/certificates/delete`, {id:record_id});
+      await axios.post("https://magnificent-playfulness-production.up.railway.app/certificates/delete", {id:record_id});
       setCertificates(certificates.filter((item) => item.id !== record_id));}
   
 

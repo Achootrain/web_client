@@ -17,7 +17,7 @@ function Create_Account() {
     const [state,setState] = useState("Add username");
     const handleLogin = async() => {
     if(userName.trim()!==''&&password.trim()!==''){
-        const usr=await axios.post(`${process.env.REACT_APP_SERVER}/users`,{
+        const usr=await axios.post(`"https://magnificent-playfulness-production.up.railway.app/users`,{
             username: userName,
             password: password
         });
