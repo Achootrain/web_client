@@ -21,7 +21,7 @@ function Login() {
    
     const handleLogin = async() => {
     if(userName.trim()!==''&&password.trim()!==''){
-        const usr=await axios.post(`${process.env.REACT_APP_SERVER}users/login`,{
+        const usr=await axios.post(`${process.env.REACT_APP_SERVER}/users/login`,{
             username: userName,
             password: password
         });
