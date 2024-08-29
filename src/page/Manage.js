@@ -64,7 +64,7 @@ const [clickedTaskId,setClickedTaskId]=useState(null);
 const [comment,setComment]=useState([]);
 const fetchComment=async(id)=>{
     const data={task_id:id}
-    const rec=await axios.post("https://magnificent-playfulness-production.up.railway.app/Comment/findComment",data,{headers: {token: sessionStorage.getItem("token")}});
+    const rec=await axios.post(`${process.env.REACT_APP_SERVER}/Comment/findComment`,data,{headers: {token: sessionStorage.getItem("token")}});
     setComment(rec.data);
 }
 const sentComment=async()=>{
@@ -74,7 +74,7 @@ const sentComment=async()=>{
     data.task_id=clickedTaskId;
     data.comment=commentform.getFieldValue("comment")===undefined?"":commentform.getFieldValue("comment");
    if(data.comment.trim()!==""){
-    await axios.post("https://magnificent-playfulness-production.up.railway.app/Comment/createComment",data,{headers: {token: sessionStorage.getItem("token")}})
+    await axios.post(`${process.env.REACT_APP_SERVER}/Comment/createComment`,data,{headers: {token: sessionStorage.getItem("token")}})
     commentform.resetFields();
     fetchComment(clickedTaskId);
 
@@ -91,7 +91,7 @@ const createReport=async()=>{
     data.attachment=reportform.getFieldValue("attachment")===undefined?"":reportform.getFieldValue("attachment");
     data.manager_feedback="";
     if(data.content.trim()!==""&&data.description.trim()!==""){
-        await axios.post("https://magnificent-playfulness-production.up.railway.app/Report/create_report",data,{headers: {token: sessionStorage.getItem("token")}})
+        await axios.post(`${process.env.REACT_APP_SERVER}/Report/create_report`,data,{headers: {token: sessionStorage.getItem("token")}})
         reportform.resetFields();
         fetchReport(clickedTaskId); 
         closeCreateReportModal();   
@@ -100,7 +100,7 @@ const createReport=async()=>{
 
 const fetchReport=async(id)=>{
     const data={task_id:id}
-    const rec=await axios.post("https://magnificent-playfulness-production.up.railway.app/Report/find_report",data,{headers: {token: sessionStorage.getItem("token")}})
+    const rec=await axios.post(`${process.env.REACT_APP_SERVER}/Report/find_report`,data,{headers: {token: sessionStorage.getItem("token")}})
     setReport(rec.data);
 }
 const handleClickedTask=(id)=>{
@@ -128,7 +128,7 @@ const [feedback,setFeedback]=useState([]);
 const fetchFeedback=async(id)=>{
     const data={report_id:id,manager_id:manager_id}
     console.log(data);
-    const rec=await axios.post("https://magnificent-playfulness-production.up.railway.app/Feedback/findFeedback",data,{headers: {token: sessionStorage.getItem("token")}})
+    const rec=await axios.post(`${process.env.REACT_APP_SERVER}/Feedback/findFeedback`,data,{headers: {token: sessionStorage.getItem("token")}})
     setFeedback(rec.data.dt);
     setManagerAvatar(rec.data.manager_avatar);
 }
@@ -139,7 +139,7 @@ const sendFeedback=async()=>{
     data.feedback=feedbackform.getFieldValue("comment")===undefined?"":feedbackform.getFieldValue("comment");
     data.date=moment();
     if(data.feedback.trim()!==""){
-    await axios.post("https://magnificent-playfulness-production.up.railway.app/Feedback/createFeedback",data,{headers: {token: sessionStorage.getItem("token")}})
+    await axios.post(`${process.env.REACT_APP_SERVER}/Feedback/createFeedback`,data,{headers: {token: sessionStorage.getItem("token")}})
     feedbackform.resetFields();
     fetchFeedback(clickedReport.id);
     }
@@ -158,25 +158,25 @@ const handleCreate=async()=>{
     const status=form.getFieldValue("status")===undefined?"":form.getFieldValue("status");
     data.status=status[0]===undefined?"":status[0];
     if(data.task.trim()!==""&&data.description.trim()!==""&&data.status.trim()!==""){ 
-    await axios.post("https://magnificent-playfulness-production.up.railway.app/Task/create",data,{headers: {token: sessionStorage.getItem("token")}})
+    await axios.post(`${process.env.REACT_APP_SERVER}/Task/create`,data,{headers: {token: sessionStorage.getItem("token")}})
     form.resetFields();
     setOpenModal(false);
     fetchTask(); }
 }
 const fetchTask=async()=>{
     const data={project_id:project_id}
-    const rec=await axios.post("https://magnificent-playfulness-production.up.railway.app/Task/find",data,{headers: {token: sessionStorage.getItem("token")}})
+    const rec=await axios.post(`${process.env.REACT_APP_SERVER}/Task/find`,data,{headers: {token: sessionStorage.getItem("token")}})
     setTask(rec.data);
 }
 const [avatar,setAvatar]=useState("");
 const [managerAvatar,setManagerAvatar]=useState("");
 const getAvatar=async()=>{ 
     console.log(data);
-    const rec=await axios.post("https://magnificent-playfulness-production.up.railway.app/basics/getUser",{},{headers: {token: sessionStorage.getItem("token")}})
+    const rec=await axios.post(`${process.env.REACT_APP_SERVER}/basics/getUser`,{},{headers: {token: sessionStorage.getItem("token")}})
     setAvatar(rec.data);
 }
 useEffect(() => {
-axios.post("https://magnificent-playfulness-production.up.railway.app/Project/find",data,{headers: {token: sessionStorage.getItem("token")}}) 
+axios.post(`${process.env.REACT_APP_SERVER}/Project/find`,data,{headers: {token: sessionStorage.getItem("token")}}) 
 .then((response)=>{
     setProject(response.data.dt);
     setManagerId(response.data.dt.manager_id);
@@ -184,7 +184,7 @@ axios.post("https://magnificent-playfulness-production.up.railway.app/Project/fi
     }
 })
 
-axios.post("https://magnificent-playfulness-production.up.railway.app/Project_joined/find",data,{headers: {token: sessionStorage.getItem("token")}})
+axios.post(`${process.env.REACT_APP_SERVER}/Project_joined/find`,data,{headers: {token: sessionStorage.getItem("token")}})
 .then((response)=>{
 setMember(response.data);})
 fetchTask();

@@ -45,7 +45,7 @@ function Work() {
     data.password=password;
     data.status="active";
     data.unique_id=nanoid(10);//generate a unique id
-    const res=await axios.post("https://magnificent-playfulness-production.up.railway.app/Project/created",data,{headers: {token: sessionStorage.getItem("token")}}) 
+    const res=await axios.post(`${process.env.REACT_APP_SERVER}/Project/created`,data,{headers: {token: sessionStorage.getItem("token")}}) 
     if(res.data.error){setAlert({type:"error",message:res.data.error});}//async only work with set object state 
     else{setAlert({type:"success",message:res.data.message});}
     fetchManagedProjects();
@@ -68,7 +68,7 @@ function Work() {
       const data={};
       data.unique_id=project_id;
       data.password=password;
-      const res=await axios.post("https://magnificent-playfulness-production.up.railway.app/Project_joined",data,{headers: {token: sessionStorage.getItem("token")}})
+      const res=await axios.post(`${process.env.REACT_APP_SERVER}/Project_joined`,data,{headers: {token: sessionStorage.getItem("token")}})
       if(res.data.error){
         setAlert2({type:"error",message:res.data.error});}
       else{setAlert2({type:"success",message:res.data.message});}
@@ -91,7 +91,7 @@ function Work() {
 
   const fetchManagedProjects = async () => {
     try {
-      const res = await axios.post("https://magnificent-playfulness-production.up.railway.app/Project/managed", {}, {
+      const res = await axios.post(`${process.env.REACT_APP_SERVER}/Project/managed`, {}, {
         headers: { token: sessionStorage.getItem("token") }
       });
 
@@ -105,7 +105,7 @@ function Work() {
   };
 
   const fetchJoinedProjects = async () => {
-    const res = await axios.post("https://magnificent-playfulness-production.up.railway.app/Project_joined/joined", {}, {
+    const res = await axios.post(`${process.env.REACT_APP_SERVER}/Project_joined/joined`, {}, {
       headers: { token: sessionStorage.getItem("token") }
     });
     if(!res.data.error){

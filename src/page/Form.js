@@ -14,7 +14,7 @@ const [uid,setID] = useState();
 
 //get id of user
 useEffect(() => {
-  axios.post("https://magnificent-playfulness-production.up.railway.app/valid_token", {},{
+  axios.post(`${process.env.REACT_APP_SERVER}/valid_token`, {},{
     headers: {token: sessionStorage.getItem("token")}
   }).then((response) => {
     if(response.data.error){
@@ -58,7 +58,7 @@ const handleChange = async(info) => {
     formField.append('file', file);  // Append the file with the key 'file'
     // Log FormData entries for debugging
     console.log(formField.get("file"))
-    const res=await axios.post("https://magnificent-playfulness-production.up.railway.app/image/upload",formField, { 
+    const res=await axios.post(`${process.env.REACT_APP_SERVER}/image/upload`,formField, { 
       headers: { "Content-Type": "multipart/form-data" },
     })
       setPicture(res.data.url);
@@ -389,7 +389,7 @@ const submitData = async () => {
     country_code: countryCode,
   }
   const resumeData = {awards_, works_, volunteers_, educations_, projects_, publications_, certificates_, basics_, interests_, languages_, skills_, profiles_, locations_};
-  await axios.post("https://magnificent-playfulness-production.up.railway.app/data", resumeData, {  headers: {token: sessionStorage.getItem("token")}
+  await axios.post(`${process.env.REACT_APP_SERVER}/data`, resumeData, {  headers: {token: sessionStorage.getItem("token")}
   }, )
   console.log(resumeData);
   ;
