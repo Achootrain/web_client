@@ -128,9 +128,8 @@ const [feedback,setFeedback]=useState([]);
 const fetchFeedback=async(id)=>{
     const data={report_id:id,manager_id:manager_id}
     console.log(data);
-    console.log(sessionStorage.getItem("token"));
-    const rec= axios.post(`${process.env.REACT_APP_SERVER}/Feedback/findFeedback`,data,{headers: {token: sessionStorage.getItem("token")}})
-    setFeedback(rec.data.dt);
+    const rec= await axios.post(`${process.env.REACT_APP_SERVER}/Feedback/findFeedback`,data,{headers: {token: sessionStorage.getItem("token")}})
+    setFeedback(rec.data.data);
     setManagerAvatar(rec.data.manager_avatar);
 }
 const sendFeedback=async()=>{
