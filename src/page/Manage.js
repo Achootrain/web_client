@@ -345,7 +345,7 @@ return(
                     <Scrollbar style={{ width: 500, height: 300 }} noScrollX={true} className="relative top-4" >
                     <div className="flex flex-col gap-y-3">   
                     {feedback?.map((item)=>(
-                    <Comment username={item.username} isFeedback={true} comment={item.feedback} date={format2(item.date)}></Comment>))}
+                    <Comment username={item.username} avatar={managerAvatar} isFeedback={true} comment={item.feedback} date={format2(item.date)}></Comment>))}
                     {isManager&&(
                     <Comment avatar={managerAvatar} username={username} isFeedback={true} editable={true} form={feedbackform} onSubmit={()=>sendFeedback()} ></Comment>)}
                     </div>
