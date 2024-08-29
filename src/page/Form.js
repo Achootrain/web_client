@@ -55,7 +55,7 @@ const handleChange = async(info) => {
     // Get this url from response in real world.
     const file=info.file.originFileObj;
     let formField = new FormData();
-    formField.append('file', file);  // Append the file with the key 'file'
+    formField.append('image', file);  // Append the file with the key 'file'
     // Log FormData entries for debugging
     const response = await axios.post('https://api.imgur.com/3/image', formField, {
       headers: {
@@ -69,7 +69,7 @@ const handleChange = async(info) => {
       console.log(response.data.data.link);
       getBase64(info.file.originFileObj, (url) => {//fetch from database
       setLoading(false);
-      setImageUrl(url);
+      setImageUrl(response.data.data.link);
      
     });
   }
