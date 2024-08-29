@@ -65,6 +65,7 @@ const handleChange = async(info) => {
     });
 
       setPicture(response.data.data.link);
+      console.log(response.data.data.link);
       getBase64(info.file.originFileObj, (url) => {//fetch from database
       setLoading(false);
       setImageUrl(url);
