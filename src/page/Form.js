@@ -26,7 +26,7 @@ useEffect(() => {
   })},[]);
   const id=uid;
 //image uploader
-
+  const IMGUR_CLIENT_ID = '2d74f1cca3ad0ba'; // Replace with your Imgur client ID
   const getBase64 = (img, callback) => {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
@@ -57,11 +57,14 @@ const handleChange = async(info) => {
     let formField = new FormData();
     formField.append('file', file);  // Append the file with the key 'file'
     // Log FormData entries for debugging
-    console.log(formField.get("file"))
-    const res=await axios.post(`${process.env.REACT_APP_SERVER}/image/upload`,formField, { 
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      setPicture(res.data.url);
+    const response = await axios.post('https://api.imgur.com/3/image', formData, {
+      headers: {
+        'Authorization': `Client-ID ${IMGUR_CLIENT_ID}`,
+        ...formData.getHeaders() // Include FormData headers
+      }
+    });
+
+      setPicture(response.data.data.link);
       getBase64(info.file.originFileObj, (url) => {//fetch from database
       setLoading(false);
       setImageUrl(url);
