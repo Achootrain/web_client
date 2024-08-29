@@ -60,7 +60,8 @@ const handleChange = async(info) => {
     const response = await axios.post('https://api.imgur.com/3/image', formField, {
       headers: {
         'Authorization': `Client-ID ${IMGUR_CLIENT_ID}`,
-        ...formField.getHeaders() // Include FormData headers
+        'Content-Type': 'multipart/form-data' // Set Content-Type manually
+        // Include FormData headers
       }
     });
 
