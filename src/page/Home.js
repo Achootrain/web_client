@@ -5,6 +5,8 @@ function Home() {
   const handleClick=()=>{
       if(log)
       navigator('/page/Account_infor');
+      else
+      navigator('/page/Login');
   }
 
 
