@@ -21,7 +21,7 @@ function App() {
             <img src="https://png.pngtree.com/png-clipart/20230924/original/pngtree-silver-award-silver-badge-vector-ribbon-banner-decoration-vector-png-image_12584648.png" className="h-8 rounded-full" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ACTProManager</span>
         </a>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <div class="hidden  w-full md:block md:w-auto" id="navbar-default">
           <div class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 ">
             <NavLink to="/page/Home"className={({ isActive }) =>`text-base ${isActive ? 'text-emerald-500' : 'text-white'}`}>
                 Home
