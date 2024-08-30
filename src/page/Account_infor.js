@@ -311,7 +311,7 @@ useEffect(() => {
                   <div className="text text-black relative -top-4 ">
                     <div className="text mt-2 ">{basics?.email ??'N/A'}</div>
                     <div className="text text-slate-700 mt-2 ">{basics?.phone ??'N/A'}</div>
-                    <div className="text text-slate-700 mt-2 ">{location?.address??'N/A'}, {location?.city ??'N/A'}</div>
+                    <div className="text text-slate-700 mt-2 ">{location?.address??'N/A'},{location?.city ??'N/A'}</div>
                     <button className="text text-gray-800 mt-4 relative top-8 w-28 h-8 rounded-xl hover:opacity-75 text-center border-emerald-600 border-2" onClick={adjustInfor}>Edit profile</button>
                   </div>
                   <div>
